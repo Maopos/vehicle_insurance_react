@@ -17,7 +17,7 @@ html {
 }
 body {
   background: #8db3ff;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #904e95, #e96443);  /* Chrome 10-25, Safari 5.1-6 */
+  
   
   font-family: Arial, Helvetica, sans-serif;
 }
