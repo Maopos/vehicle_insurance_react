@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { PropTypes } from "prop-types";
 
 const ResumeDiv = styled.div`
   padding: 1rem 0 2rem;
@@ -40,5 +41,9 @@ const Resume = ({ data }) => {
     </ResumeDiv>
   );
 };
+
+Resume.propTypes ={
+  data: PropTypes.object.isRequired
+}
 
 export default Resume;

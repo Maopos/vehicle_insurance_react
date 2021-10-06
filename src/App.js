@@ -5,17 +5,18 @@ import styled from "@emotion/styled";
 import Form from "./components/Form";
 import Resume from "./components/Resume";
 import Result from "./components/Result";
+import Spinner from "./components/Spinner";
 
 const Container = styled.div`
   margin: 0 auto;
 `;
 
-const FormContainer = styled.form`
+const FormContainer = styled.div`
   width: 60%;
   background: whitesmoke;
   margin: auto;
   color: black;
-  padding: 0 0 ;
+  padding: 0 0;
 `;
 
 function App() {
@@ -27,16 +28,19 @@ function App() {
       year: "",
     },
   });
- 
+
+  const [reload, saveReload] = useState(false);
+
   const { quote, data } = resume;
 
   return (
     <Container className="App">
       <FormContainer>
         <Header title="Vehicular Insurance Quote"></Header>
-        <Form saveResume={saveResume}></Form>
+        <Form saveResume={saveResume} saveReload={saveReload}></Form>
+        {reload ? <Spinner /> : null}
         <Resume data={data}></Resume>
-        <Result quote={quote}></Result>
+        {!reload ? <Result quote={quote}></Result> : null}
       </FormContainer>
     </Container>
   );

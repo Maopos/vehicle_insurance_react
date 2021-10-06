@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import styled from "@emotion/styled";
 import { getDiffYear, getIncrementBranch, getIncrementType } from "../helper";
+import { PropTypes } from "prop-types";
 
 const Field = styled.div`
   display: flex;
@@ -61,7 +62,7 @@ const Error = styled.div`
   margin: 0 auto 2rem;
 `;
 
-const Form = ({saveResume}) => {
+const Form = ({saveResume, saveReload}) => {
   const [data, saveData] = useState({
     brand: "",
     year: "",
@@ -101,12 +102,18 @@ const Form = ({saveResume}) => {
     result *= getIncrementType(plan) // Increment By Plan
 
     result = parseFloat(result).toFixed(2)
-    console.log(result); 
+    
+    saveReload(true);
 
-    saveResume({
-      quote: result,
+    setTimeout(() => {
+      saveReload(false);
+      saveResume({
+      quote: Number(result),
       data
     });
+    }, 2000);
+
+    
   };
 
   
@@ -170,5 +177,10 @@ const Form = ({saveResume}) => {
     </div>
   );
 };
+
+Form.propTypes = {
+  saveResume: PropTypes.func.isRequired,
+  saveReload: PropTypes.func.isRequired
+}
 
 export default Form;
